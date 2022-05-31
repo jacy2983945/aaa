@@ -85,8 +85,6 @@
     cursor: pointer;
     width: 90px;
     text-align: center;
-    -webkit-appearance:none;
-    -moz-appearance: none;
 }
 .suject input:hover,.suject input.hovered{
     background-color: #7ecdf4;

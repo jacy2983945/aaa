@@ -83,6 +83,7 @@
     border-radius: 15px;
     cursor: pointer;
     width: 90px;
+    text-align: center;
 }
 .suject input:hover,.suject input.hovered{
     background-color: #7ecdf4;

@@ -17,28 +17,7 @@
             <input type="button" value="英文" id="eng">
         </div>
     <span id="spanid">教材</span><select name="" id="no">
-        <option value="6A">6A</option>
-        <option value="5A">5A</option>
-        <option value="4A">4A</option>
-        <option value="3A">3A</option>
-        <option value="2A">2A</option>
-        <option value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="D">D</option>
-        <option value="E">E</option>
-        <option value="F">F</option>
-        <option value="G">G</option>
-        <option value="H">H</option>
-        <option value="I">I</option>
-        <option value="J">J</option>
-        <option value="K">K</option>
-        <option value="L">L</option>
-        <option value="M">M</option>
-        <option value="N">N</option>
-        <option value="O">O</option>
-        <option value="P">P</option>
-        <option value="Q">Q</option>
+        
     </select>
     <br>
     <span id="spanid">編號1</span><select name="" id="src">
@@ -65,55 +44,49 @@
     </select>
     <br>
     <span id="spanid">編號2</span><select name="" id="dst">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
-        <option value="50">50</option>
-        <option value="60">60</option>
-        <option value="70">70</option>
-        <option value="80">80</option>
-        <option value="90">90</option>
-        <option value="100">100</option>
-        <option value="110">120</option>
-        <option value="120">120</option>
-        <option value="130">130</option>
-        <option value="140">140</option>
-        <option value="150">150</option>
-        <option value="160">160</option>
-        <option value="170">170</option>
-        <option value="180">180</option>
-        <option value="190">190</option>
-        <option value="200">200</option>
+        
     </select>
     <br>
     <span id="spanid">數量</span><input type="text" id ="count"oninput="value=value.replace(/[^\d]/g,'')">
     <br>
-  <button id="b" >儲存</button>
+  <button id="mathsave" >儲存</button>
+  <button id="chisave" >儲存</button>
+  <button id="engsave" >儲存</button>
   
 </div>
-<p id="msg"></p>
 </body>
 </html>
 <script>
+    
     var src=$("#src").val();
     var dst=$("#dst").val();
     var no=$("#no").val();
     var count=$("#count").val();
-    var tupleNo = Object.freeze({ "6A":2,"5A":3,"4A":4,"3A":5,"2A":6,A:7,B:8,C:9,D:10,E:11,F:12,G:13,H:14,I:15,J:16,K:17,L:18,M:19,N:20,O:21,P:22 });
+    var tupleMNo = Object.freeze({ "6A":2,"5A":3,"4A":4,"3A":5,"2A":6,A:7,B:8,C:9,D:10,E:11,F:12,G:13,H:14,I:15,J:16,K:17,L:18,M:19,N:20,O:21,P:22 });
+    var tupleCNo = Object.freeze({ "6A":2,"5A":3,"4A":4,"3A":5,"2A":6,A:7,B:8,C:9,D:10,E:11,F:12,G:13,H:14,I:15,J:16,K:17,L:18,M:19,N:20,O:21,P:22 });
+    var tupleENo = Object.freeze({ "5A":2,"4A":3,"3A":4,"2A":5,"A":6,B:7,C:8,D:9,E:10,F:11,G:12,H:13,I:14,J:15,K:16,L:17,M:18 });
     var tupleSrc = Object.freeze({ 1:2, 11:3,21:4,31:5,41:6,51:7,61:8,71:9,81:10,91:11,101:12,111:13,121:14,131:15,141:16,151:17,161:18,171:19,181:20,191:21 })
-    var tupleSuject=Object.freeze({ 1:"數學",2:"國語",3:"英文" });
     var suject=0;
+    var id = new Array(10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200); 
+    var value = new Array(10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200);
+    var select = document.getElementById("dst"); 
+    select.length = 1;
+    select.options[0].selected = true;
+    for(var x = 0;x<id.length;x++){ 
+        var option = document.createElement("option"); 
+        option.setAttribute("value",id[x]);
+        option.appendChild(document.createTextNode(value[x])); 
+        select.appendChild(option);
+    } 
     $(function() {
 
-    $('#b').on('click', function() {
+    $('#mathsave').on('click', function() {
         var src=Number($("#src").val());
         var dst=Number($("#dst").val());
         var no=$("#no").val();
         var count=Number($("#count").val());
         var dataNum=(dst-src)/10.0;
         dataNum=parseInt(dataNum)+1;
-        console.log(dataNum);
         if(src>dst){
             alert("請輸入正確");
             return;
@@ -122,45 +95,173 @@
             alert("請輸入數量");
             return;
         }
-        if(suject==0){
-            alert("請選擇科目");
-            return;
-        }
-        if(confirm("請確認\n"+tupleSuject[suject]+"\n"+no+"教材\n"+src+"~"+dst+"\n"+count+"本")){
+        if(confirm("請確認\n"+"數學"+"\n"+no+"教材\n"+src+"~"+dst+"\n"+count+"本")){
             var row=Number(tupleSrc[$("#src").val()]);
-            var col=Number(tupleNo[$("#no").val()]);
+            var col=Number(tupleMNo[$("#no").val()]);
             for(var i=0;i<dataNum;i++){
             a = {
                 row:row,
                 col:col,
                 value:count,
             };
+            
             $.get('https://script.google.com/macros/s/AKfycbwOpQ-ooaPNj_QqOxmo88KVWaGVQno4Lsmr91SE09x4EsBjCbw/exec', a);
             row=row+1;
             }
-            $('#b').attr("disabled","disabled");
-            $('#b').css("background-color","gray");
-            $("#msg").text("寫入中");
+            $('#mathsave').text("儲存中");
+            $('#mathsave').attr("disabled","disabled");
+            $('#mathsave').css("background-color","gray");
             var time=dataNum*1400;
-            console.log(time);
             setTimeout(() => {
-                $('#b').attr("disabled",false);
-                $("#msg").text("寫入完畢");
-                $('#b').css("background-color","#7ecdf4");
+                $('#mathsave').attr("disabled",false);
+                $('#mathsave').css("background-color","#7ecdf4");
+                $('#mathsave').text("儲存");
             }, time);
         }
-        
-        
     });
+
+    $('#chisave').on('click', function() {
+        var src=Number($("#src").val());
+        var dst=Number($("#dst").val());
+        var no=$("#no").val();
+        var count=Number($("#count").val());
+        var dataNum=(dst-src)/10.0;
+        dataNum=parseInt(dataNum)+1;
+        if(src>dst){
+            alert("請輸入正確");
+            return;
+        }
+        if(count==0){
+            alert("請輸入數量");
+            return;
+        }
+        if(confirm("請確認\n"+"國語"+"\n"+no+"教材\n"+src+"~"+dst+"\n"+count+"本")){
+            var row=Number(tupleSrc[$("#src").val()]);
+            var col=Number(tupleCNo[$("#no").val()]);
+            for(var i=0;i<dataNum;i++){
+            a = {
+                row:row,
+                col:col,
+                value:count,
+            };
+            $('#chisave').text("儲存中");
+            $.get('https://script.google.com/macros/s/AKfycbwX34dNgpc4GxoUCztleHWE6w37FAp_IfoAWJGKEe4gFHWXM6N2/exec', a);
+            row=row+1;
+            }
+            
+            $('#chisave').attr("disabled","disabled");
+            $('#chisave').css("background-color","gray");
+            var time=dataNum*1400;
+            setTimeout(() => {
+                $('#chisave').text("儲存");
+                $('#chisave').attr("disabled",false);
+                $('#chisave').css("background-color","#7ecdf4");
+            }, time);
+        }
     });
+    $('#engsave').on('click', function() {
+        var src=Number($("#src").val());
+        var dst=Number($("#dst").val());
+        var no=$("#no").val();
+        var count=Number($("#count").val());
+        var dataNum=(dst-src)/10.0;
+        dataNum=parseInt(dataNum)+1;
+        if(src>dst){
+            alert("請輸入正確");
+            return;
+        }
+        if(count==0){
+            alert("請輸入數量");
+            return;
+        }
+        if(confirm("請確認\n"+"英文"+"\n"+no+"教材\n"+src+"~"+dst+"\n"+count+"本")){
+            var row=Number(tupleSrc[$("#src").val()]);
+            var col=Number(tupleENo[$("#no").val()]);
+            for(var i=0;i<dataNum;i++){
+            a = {
+                row:row,
+                col:col,
+                value:count,
+            };
+            $('#engsave').text("儲存中");
+            $.get('https://script.google.com/macros/s/AKfycbz4RCW9GAx9g7pxAOvZ6O_fzSEZyOzPVsFcUWgB73hztWW37WU/exec', a);
+            row=row+1;
+            }
+            
+            $('#engsave').attr("disabled","disabled");
+            $('#engsave').css("background-color","gray");
+            var time=dataNum*1400;
+            setTimeout(() => {
+                $('#engsave').text("儲存");
+                $('#engsave').attr("disabled",false);
+                $('#engsave').css("background-color","#7ecdf4");
+            }, time);
+        }
+    });
+
+    });
+    $("#src").change(function(){
+        var srcval=Number($("#src").val());
+        var id = new Array(10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200); 
+        var value = new Array(10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200);
+        var select = document.getElementById("dst"); 
+        select.length = 1;
+        select.options[0].selected = true;
+        var key=parseInt(srcval/10.0);
+        for(var x = key;x<id.length;x++){ 
+            var option = document.createElement("option"); 
+            option.setAttribute("value",id[x]);
+            option.appendChild(document.createTextNode(value[x])); 
+            select.appendChild(option);
+        } 
+    })
     $('#math').on('click', function() {
-        suject=1;
+        $('#chisave').css("display","none");
+        $('#engsave').css("display","none");
+        $('#mathsave').css("display","block");
+        var id = new Array("6A","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q"); 
+        var value = new Array("6A","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q"); 
+        var select = document.getElementById("no"); 
+        select.length = 1;
+        select.options[0].selected = true;
+        for(var x = 0;x<id.length;x++){ 
+            var option = document.createElement("option"); 
+            option.setAttribute("value",id[x]);
+            option.appendChild(document.createTextNode(value[x])); 
+            select.appendChild(option);
+        } 
     })
     $('#chi').on('click', function() {
-        suject=2;
+        $('#chisave').css("display","block");
+        $('#engsave').css("display","none");
+        $('#mathsave').css("display","none");
+        var id = new Array("6A","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q"); 
+        var value = new Array("6A","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q"); 
+        var select = document.getElementById("no"); 
+        select.length = 1;
+        select.options[0].selected = true;
+        for(var x = 0;x<id.length;x++){ 
+            var option = document.createElement("option"); 
+            option.setAttribute("value",id[x]);
+            option.appendChild(document.createTextNode(value[x])); 
+            select.appendChild(option);
+        } 
     })
     $('#eng').on('click', function() {
-        suject=3;
+        $('#chisave').css("display","none");
+        $('#engsave').css("display","block");
+        $('#mathsave').css("display","none");
+        var id = new Array("5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M"); 
+        var value = new Array("5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M"); 
+        var select = document.getElementById("no"); 
+        select.length = 1;
+        select.options[0].selected = true;
+        for(var x = 0;x<id.length;x++){ 
+            var option = document.createElement("option"); 
+            option.setAttribute("value",id[x]);
+            option.appendChild(document.createTextNode(value[x])); 
+            select.appendChild(option);
+        } 
     })
     var list=document.querySelectorAll(".suject input");
     function activeLink(){

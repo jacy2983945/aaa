@@ -63,8 +63,8 @@
     var no=$("#no").val();
     var count=$("#count").val();
     var tupleMNo = Object.freeze({ "6A":2,"5A":3,"4A":4,"3A":5,"2A":6,A:7,B:8,C:9,D:10,E:11,F:12,G:13,H:14,I:15,J:16,K:17,L:18,M:19,N:20,O:21,P:22 });
-    var tupleCNo = Object.freeze({ "6A":2,"5A":3,"4A":4,"3A":5,"2A":6,A:7,B:8,C:9,D:10,E:11,F:12,G:13,H:14,I:15,J:16,K:17,L:18,M:19,N:20,O:21,P:22 });
-    var tupleENo = Object.freeze({ "5A":2,"4A":3,"3A":4,"2A":5,"A":6,B:7,C:8,D:9,E:10,F:11,G:12,H:13,I:14,J:15,K:16,L:17,M:18 });
+    var tupleCNo = Object.freeze({ "7A":2,"6A":3,"5A":4,"4A":5,"3A":6,"2A":7,A:8,B:9,C:10,D:11,E:12,F:13,G:14,H:15,I:16,J:17,K:18,L:19 });
+    var tupleENo = Object.freeze({ "Z1":2,"Z2":3,"Z3":4,"5A":5,"4A":6,"3A":7,"2A":8,A:9,B:10,C:11,D:12,E:13,F:14,G:15,H:16,I:17,J:18,K:19,L:20,M:21 });
     var tupleSrc = Object.freeze({ 1:2, 11:3,21:4,31:5,41:6,51:7,61:8,71:9,81:10,91:11,101:12,111:13,121:14,131:15,141:16,151:17,161:18,171:19,181:20,191:21 })
     var suject=0;
     var id = new Array(10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200); 
@@ -235,8 +235,8 @@
         $('#chisave').css("display","block");
         $('#engsave').css("display","none");
         $('#mathsave').css("display","none");
-        var id = new Array("6A","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q"); 
-        var value = new Array("6A","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q"); 
+        var id = new Array("7A","6A","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L"); 
+        var value = new Array("7A","6A","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L"); 
         var select = document.getElementById("no"); 
         select.length = 1;
         select.options[0].selected = true;
@@ -251,8 +251,8 @@
         $('#chisave').css("display","none");
         $('#engsave').css("display","block");
         $('#mathsave').css("display","none");
-        var id = new Array("5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M"); 
-        var value = new Array("5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M"); 
+        var id = new Array("Z1","Z2","Z3","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M"); 
+        var value = new Array("Z1(運筆教材)","Z2(運筆教材)","Z3(運筆教材)","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L","M"); 
         var select = document.getElementById("no"); 
         select.length = 1;
         select.options[0].selected = true;

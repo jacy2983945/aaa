@@ -55,7 +55,7 @@
     font-weight: 900;
     font-family: DFKai-sb;
 }
-#b
+#mathsave,#chisave,#engsave
 {
     margin-top: 20px;
     width: 290px;
@@ -66,6 +66,7 @@
     background-color: #7ecdf4;
     color: white;
     cursor: pointer;
+    display: none;
 }
 .suject
 {

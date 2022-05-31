@@ -1,15 +1,22 @@
-<script src="jquery-1.10.2.js"></script>
+<script src="D:\XAMPP\htdocs\main\js\jquery-1.10.2.js"></script>
 <!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
   <title></title>
   <link rel="stylesheet" type="text/css" href="kumon.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, shrink-to-fit=no">
 </head>
 
 <body>
+    
     <div class="main">
-    教材<select name="" id="no">
+        <div class="suject">
+            <input type="button" value="數學" id="math">
+            <input type="button" value="國語" id="chi">
+            <input type="button" value="英文" id="eng">
+        </div>
+    <span id="spanid">教材</span><select name="" id="no">
         <option value="6A">6A</option>
         <option value="5A">5A</option>
         <option value="4A">4A</option>
@@ -34,7 +41,7 @@
         <option value="Q">Q</option>
     </select>
     <br>
-    編號1<select name="" id="src">
+    <span id="spanid">編號1</span><select name="" id="src">
         <option value="1">1</option>
         <option value="11">11</option>
         <option value="21">21</option>
@@ -57,7 +64,7 @@
         <option value="191">191</option>
     </select>
     <br>
-    編號2<select name="" id="dst">
+    <span id="spanid">編號2</span><select name="" id="dst">
         <option value="10">10</option>
         <option value="20">20</option>
         <option value="30">30</option>
@@ -80,9 +87,12 @@
         <option value="200">200</option>
     </select>
     <br>
-    數量<input type="text" id ="count">
-  <button id="b">儲存</button>
+    <span id="spanid">數量</span><input type="text" id ="count"oninput="value=value.replace(/[^\d]/g,'')">
+    <br>
+  <button id="b" >儲存</button>
+  
 </div>
+<p id="msg"></p>
 </body>
 </html>
 <script>
@@ -92,13 +102,14 @@
     var count=$("#count").val();
     var tupleNo = Object.freeze({ "6A":2,"5A":3,"4A":4,"3A":5,"2A":6,A:7,B:8,C:9,D:10,E:11,F:12,G:13,H:14,I:15,J:16,K:17,L:18,M:19,N:20,O:21,P:22 });
     var tupleSrc = Object.freeze({ 1:2, 11:3,21:4,31:5,41:6,51:7,61:8,71:9,81:10,91:11,101:12,111:13,121:14,131:15,141:16,151:17,161:18,171:19,181:20,191:21 })
+    var tupleSuject=Object.freeze({ 1:"數學",2:"國語",3:"英文" });
+    var suject=0;
     $(function() {
-
 
     $('#b').on('click', function() {
         var src=Number($("#src").val());
         var dst=Number($("#dst").val());
-        var no=Number($("#no").val());
+        var no=$("#no").val();
         var count=Number($("#count").val());
         var dataNum=(dst-src)/10.0;
         dataNum=parseInt(dataNum)+1;
@@ -107,9 +118,18 @@
             alert("請輸入正確");
             return;
         }
-        var row=Number(tupleSrc[$("#src").val()]);
-        var col=Number(tupleNo[$("#no").val()]);
-        for(var i=0;i<dataNum;i++){
+        if(count==0){
+            alert("請輸入數量");
+            return;
+        }
+        if(suject==0){
+            alert("請選擇科目");
+            return;
+        }
+        if(confirm("請確認\n"+tupleSuject[suject]+"\n"+no+"教材\n"+src+"~"+dst+"\n"+count+"本")){
+            var row=Number(tupleSrc[$("#src").val()]);
+            var col=Number(tupleNo[$("#no").val()]);
+            for(var i=0;i<dataNum;i++){
             a = {
                 row:row,
                 col:col,
@@ -117,8 +137,41 @@
             };
             $.get('https://script.google.com/macros/s/AKfycbwOpQ-ooaPNj_QqOxmo88KVWaGVQno4Lsmr91SE09x4EsBjCbw/exec', a);
             row=row+1;
+            }
+            $('#b').attr("disabled","disabled");
+            $('#b').css("background-color","gray");
+            $("#msg").text("寫入中");
+            var time=dataNum*1400;
+            console.log(time);
+            setTimeout(() => {
+                $('#b').attr("disabled",false);
+                $("#msg").text("寫入完畢");
+                $('#b').css("background-color","#7ecdf4");
+            }, time);
         }
+        
         
     });
     });
+    $('#math').on('click', function() {
+        suject=1;
+    })
+    $('#chi').on('click', function() {
+        suject=2;
+    })
+    $('#eng').on('click', function() {
+        suject=3;
+    })
+    var list=document.querySelectorAll(".suject input");
+    function activeLink(){
+          list.forEach(event=>{
+              event.classList.remove('hovered');    
+          })
+          if(this.classList=="hovered"){
+            this.classList.remove('hovered');
+          }else{
+            this.classList.add('hovered');
+          }
+    }
+    list.forEach((item)=>item.addEventListener('click',activeLink));
 </script>

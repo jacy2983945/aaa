@@ -1,0 +1,43 @@
+.main{
+    width: 70%;
+    margin-left: 35%;
+}
+#no
+{
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 900;
+    font-family: DFKai-sb;
+    margin-left: 20px;
+}
+#src
+{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 900;
+    font-family: DFKai-sb;
+}
+#dst
+{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 900;
+    font-family: DFKai-sb;
+}
+#count
+{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 900;
+    font-family: DFKai-sb;
+}

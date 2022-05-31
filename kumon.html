@@ -1,0 +1,124 @@
+<script src="D:\XAMPP\htdocs\main\js\jquery-1.10.2.js"></script>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="kumon.css" />
+</head>
+
+<body>
+    <div class="main">
+    教材<select name="" id="no">
+        <option value="6A">6A</option>
+        <option value="5A">5A</option>
+        <option value="4A">4A</option>
+        <option value="3A">3A</option>
+        <option value="2A">2A</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+        <option value="G">G</option>
+        <option value="H">H</option>
+        <option value="I">I</option>
+        <option value="J">J</option>
+        <option value="K">K</option>
+        <option value="L">L</option>
+        <option value="M">M</option>
+        <option value="N">N</option>
+        <option value="O">O</option>
+        <option value="P">P</option>
+        <option value="Q">Q</option>
+    </select>
+    <br>
+    編號1<select name="" id="src">
+        <option value="1">1</option>
+        <option value="11">11</option>
+        <option value="21">21</option>
+        <option value="31">31</option>
+        <option value="41">41</option>
+        <option value="51">51</option>
+        <option value="61">61</option>
+        <option value="71">71</option>
+        <option value="81">81</option>
+        <option value="91">91</option>
+        <option value="101">101</option>
+        <option value="111">111</option>
+        <option value="121">121</option>
+        <option value="131">131</option>
+        <option value="141">141</option>
+        <option value="151">151</option>
+        <option value="161">161</option>
+        <option value="171">171</option>
+        <option value="181">181</option>
+        <option value="191">191</option>
+    </select>
+    <br>
+    編號2<select name="" id="dst">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="60">60</option>
+        <option value="70">70</option>
+        <option value="80">80</option>
+        <option value="90">90</option>
+        <option value="100">100</option>
+        <option value="110">120</option>
+        <option value="120">120</option>
+        <option value="130">130</option>
+        <option value="140">140</option>
+        <option value="150">150</option>
+        <option value="160">160</option>
+        <option value="170">170</option>
+        <option value="180">180</option>
+        <option value="190">190</option>
+        <option value="200">200</option>
+    </select>
+    <br>
+    數量<input type="text" id ="count">
+  <button id="b">儲存</button>
+</div>
+</body>
+</html>
+<script>
+    var src=$("#src").val();
+    var dst=$("#dst").val();
+    var no=$("#no").val();
+    var count=$("#count").val();
+    var tupleNo = Object.freeze({ "6A":2,"5A":3,"4A":4,"3A":5,"2A":6,A:7,B:8,C:9,D:10,E:11,F:12,G:13,H:14,I:15,J:16,K:17,L:18,M:19,N:20,O:21,P:22 });
+    var tupleSrc = Object.freeze({ 1:2, 11:3,21:4,31:5,41:6,51:7,61:8,71:9,81:10,91:11,101:12,111:13,121:14,131:15,141:16,151:17,161:18,171:19,181:20,191:21 })
+    $(function() {
+
+
+    $('#b').on('click', function() {
+        var src=Number($("#src").val());
+        var dst=Number($("#dst").val());
+        var no=Number($("#no").val());
+        var count=Number($("#count").val());
+        var dataNum=(dst-src)/10.0;
+        dataNum=parseInt(dataNum)+1;
+        console.log(dataNum);
+        if(src>dst){
+            alert("請輸入正確");
+            return;
+        }
+        var row=Number(tupleSrc[$("#src").val()]);
+        var col=Number(tupleNo[$("#no").val()]);
+        for(var i=0;i<dataNum;i++){
+            a = {
+                row:row,
+                col:col,
+                value:count,
+            };
+            $.get('https://script.google.com/macros/s/AKfycbwOpQ-ooaPNj_QqOxmo88KVWaGVQno4Lsmr91SE09x4EsBjCbw/exec', a);
+            row=row+1;
+        }
+        
+    });
+    });
+</script>

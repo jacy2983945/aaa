@@ -1,4 +1,4 @@
-<script src="jquery-1.10.2.js"></script>
+<script src="D:\XAMPP\htdocs\main\js\jquery-1.10.2.js"></script>
 <!doctype html>
 <html>
 <head>
@@ -62,8 +62,8 @@
     var dst=$("#dst").val();
     var no=$("#no").val();
     var count=$("#count").val();
-    var tupleMNo = Object.freeze({ "6A":2,"5A":3,"4A":4,"3A":5,"2A":6,A:7,B:8,C:9,D:10,E:11,F:12,G:13,H:14,I:15,J:16,K:17,L:18,M:19,N:20,O:21,P:22 });
-    var tupleCNo = Object.freeze({ "7A":2,"6A":3,"5A":4,"4A":5,"3A":6,"2A":7,A:8,B:9,C:10,D:11,E:12,F:13,G:14,H:15,I:16,J:17,K:18,L:19 });
+    var tupleMNo = Object.freeze({ "6A":2,"5A":3,"4A":4,"3A":5,"2A":6,A:7,B:8,C:9,D:10,E:11,F:12,G:13,H:14,I:15,J:16,K:17,L:18,M:19,N:20,O:21,P:22,Q:23 });
+    var tupleCNo = Object.freeze({ "7A":2,"6A":3,"5A":4,"4A":5,"3A":6,"2A":7,"A1":8,"A2":9,B:10,C:11,D:12,E:13,F:14,G:15,H:16,I:17,J:18,K:19,L:20 });
     var tupleENo = Object.freeze({ "Z1":2,"Z2":3,"Z3":4,"5A":5,"4A":6,"3A":7,"2A":8,A:9,B:10,C:11,D:12,E:13,F:14,G:15,H:16,I:17,J:18,K:19,L:20,M:21 });
     var tupleSrc = Object.freeze({ 1:2, 11:3,21:4,31:5,41:6,51:7,61:8,71:9,81:10,91:11,101:12,111:13,121:14,131:15,141:16,151:17,161:18,171:19,181:20,191:21 })
     var suject=0;
@@ -96,8 +96,8 @@
             return;
         }
         if(confirm("請確認\n"+"數學"+"\n"+no+"教材\n"+src+"~"+dst+"\n"+count+"本")){
-            var row=Number(tupleSrc[$("#src").val()]);
-            var col=Number(tupleMNo[$("#no").val()]);
+            var col=Number(tupleSrc[$("#src").val()]);
+            var row=Number(tupleMNo[$("#no").val()]);
             for(var i=0;i<dataNum;i++){
             a = {
                 row:row,
@@ -106,7 +106,7 @@
             };
             
             $.get('https://script.google.com/macros/s/AKfycbwOpQ-ooaPNj_QqOxmo88KVWaGVQno4Lsmr91SE09x4EsBjCbw/exec', a);
-            row=row+1;
+            col=col+1;
             }
             $('#mathsave').text("儲存中");
             $('#mathsave').attr("disabled","disabled");
@@ -136,8 +136,8 @@
             return;
         }
         if(confirm("請確認\n"+"國語"+"\n"+no+"教材\n"+src+"~"+dst+"\n"+count+"本")){
-            var row=Number(tupleSrc[$("#src").val()]);
-            var col=Number(tupleCNo[$("#no").val()]);
+            var col=Number(tupleSrc[$("#src").val()]);
+            var row=Number(tupleCNo[$("#no").val()]);
             for(var i=0;i<dataNum;i++){
             a = {
                 row:row,
@@ -146,7 +146,7 @@
             };
             $('#chisave').text("儲存中");
             $.get('https://script.google.com/macros/s/AKfycbwX34dNgpc4GxoUCztleHWE6w37FAp_IfoAWJGKEe4gFHWXM6N2/exec', a);
-            row=row+1;
+            col=col+1;
             }
             
             $('#chisave').attr("disabled","disabled");
@@ -175,8 +175,8 @@
             return;
         }
         if(confirm("請確認\n"+"英文"+"\n"+no+"教材\n"+src+"~"+dst+"\n"+count+"本")){
-            var row=Number(tupleSrc[$("#src").val()]);
-            var col=Number(tupleENo[$("#no").val()]);
+            var col=Number(tupleSrc[$("#src").val()]);
+            var row=Number(tupleENo[$("#no").val()]);
             for(var i=0;i<dataNum;i++){
             a = {
                 row:row,
@@ -185,7 +185,7 @@
             };
             $('#engsave').text("儲存中");
             $.get('https://script.google.com/macros/s/AKfycbz4RCW9GAx9g7pxAOvZ6O_fzSEZyOzPVsFcUWgB73hztWW37WU/exec', a);
-            row=row+1;
+            col=col+1;
             }
             
             $('#engsave').attr("disabled","disabled");
@@ -235,8 +235,8 @@
         $('#chisave').css("display","block");
         $('#engsave').css("display","none");
         $('#mathsave').css("display","none");
-        var id = new Array("7A","6A","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L"); 
-        var value = new Array("7A","6A","5A","4A","3A","2A","A","B","C","D","E","F","G","H","I","J","K","L"); 
+        var id = new Array("7A","6A","5A","4A","3A","2A","A1","A2","B","C","D","E","F","G","H","I","J","K","L"); 
+        var value = new Array("7A","6A","5A","4A","3A","2A","A1","A2","B","C","D","E","F","G","H","I","J","K","L"); 
         var select = document.getElementById("no"); 
         select.length = 1;
         select.options[0].selected = true;

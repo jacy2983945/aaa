@@ -87,8 +87,16 @@
         var count=Number($("#count").val());
         var dataNum=(dst-src)/10.0;
         dataNum=parseInt(dataNum)+1;
-        if(src>dst){
-            alert("請輸入正確");
+        if(!window.navigator.onLine){
+            alert("網路在搞 確認網路再來😎😎😎");
+            return;
+        }
+        if(no==""){
+            alert("請選擇教材");
+            return;
+        }
+        if(dst==""){
+            alert("編號2未輸入");
             return;
         }
         if(count==0){
@@ -127,8 +135,16 @@
         var count=Number($("#count").val());
         var dataNum=(dst-src)/10.0;
         dataNum=parseInt(dataNum)+1;
-        if(src>dst){
-            alert("請輸入正確");
+        if(!window.navigator.onLine){
+            alert("網路在搞 確認網路再來😎😎😎");
+            return;
+        }
+        if(no==""){
+            alert("請選擇教材");
+            return;
+        }
+        if(dst==""){
+            alert("編號2未輸入");
             return;
         }
         if(count==0){
@@ -166,8 +182,16 @@
         var count=Number($("#count").val());
         var dataNum=(dst-src)/10.0;
         dataNum=parseInt(dataNum)+1;
-        if(src>dst){
-            alert("請輸入正確");
+        if(!window.navigator.onLine){
+            alert("網路在搞 確認網路再來😎😎😎");
+            return;
+        }
+        if(no==""){
+            alert("請選擇教材");
+            return;
+        }
+        if(dst==""){
+            alert("編號2未輸入");
             return;
         }
         if(count==0){
